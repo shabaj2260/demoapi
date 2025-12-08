@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="97bf54eb-6ad2-4662-a0b6-f0e0ec982a22" >
+		<http:listener-connection host="0.0.0.0" port="8083" />
+	</http:listener-config>
+	<flow name="demoapiFlow" doc:id="ef6aa640-39e1-46d4-9653-b03bb8bc2e87" >
+		<http:listener doc:name="Listener" doc:id="623e2b2c-357a-4a4f-a0c2-0df8c42fae48" config-ref="HTTP_Listener_config" path="/demoapi"/>
+		<logger level="INFO" doc:name="Logger" doc:id="1e84416c-1239-4aba-9c6f-67cdf8089800" message="start"/>
+		<flow-ref doc:name="Flow Reference" doc:id="8c697ff9-0767-4902-a3d3-3ca0cf64aa58" name="demoapisub_flowapi"/>
+	</flow>
+	<sub-flow name="demoapisub_flowapi" doc:id="e03f27fe-a09e-41b6-9c37-f03bd7ed8f96" >
+		<logger level="INFO" doc:name="Logger" doc:id="c906b011-95e6-4f7c-8847-fb2c5fbc81e7" message="subflow1"/>
+		<flow-ref doc:name="Flow Reference" doc:id="41438462-0fa6-4d50-b40e-5e5e45640362" name="demoapiprivateflow"/>
+	</sub-flow>
+	<sub-flow name="Sub_Flow2" doc:id="5bb5e5fb-03e9-4135-8266-74bf34d2caf5" >
+		<logger level="INFO" doc:name="Logger" doc:id="23dac4fc-e55e-40ab-9d9c-8468bdd08eb4" message="subflow2"/>
+	</sub-flow>
+	<flow name="demoapiprivateflow" doc:id="56af440a-8ecd-4ac0-8e0a-a08b73e6a7ac" >
+		<logger level="INFO" doc:name="Logger" doc:id="7cb21ba1-a977-4a69-95f7-f4be3ebffcf1" message="privateflow1"/>
+		<flow-ref doc:name="Flow Reference" doc:id="13b63754-c81a-446d-9e7f-d7201ab855c1" name="Sub_Flow2"/>
+	</flow>
+</mule>
