@@ -22,5 +22,6 @@ http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/htt
 	<flow name="demoapiprivateflow" doc:id="56af440a-8ecd-4ac0-8e0a-a08b73e6a7ac" >
 		<logger level="INFO" doc:name="Logger" doc:id="7cb21ba1-a977-4a69-95f7-f4be3ebffcf1" message="privateflow1"/>
 		<flow-ref doc:name="Flow Reference" doc:id="13b63754-c81a-446d-9e7f-d7201ab855c1" name="Sub_Flow2"/>
+		<logger level="INFO" doc:name="Logger" doc:id="70b8ece5-6d6e-4c75-8e02-64e26e57c9e9" message='#["my private flow is added at end"]'/>
 	</flow>
 </mule>
